@@ -2,7 +2,7 @@
 
 Complete solution to Danny's Diner from *8weeksqlchallenge.com*. Analyzed restaurant sales across sales, menu, members tables. 
  
-URL - 8weeksqlchallenge.com/case-study-1/
+URL - *8weeksqlchallenge.com/case-study-1/*
 
 Complete solution to Danny's Japanese restaurant analytics challenge. Analyzed sales data to uncover customer spending patterns, visit frequency, menu preferences, and loyalty program performance.
 
