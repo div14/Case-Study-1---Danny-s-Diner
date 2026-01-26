@@ -1,6 +1,6 @@
 # Case-Study-1---Danny-s-Diner || 8 Week SQL Challenge |
 
-Complete solution to Danny's Diner from 8weeksqlchallenge.com. Analyzed restaurant sales across sales, menu, members tables. 
+Complete solution to Danny's Diner from *8weeksqlchallenge.com*. Analyzed restaurant sales across sales, menu, members tables. 
  
 URL - 8weeksqlchallenge.com/case-study-1/
 
@@ -15,4 +15,8 @@ sales: customer_id, order_date, product_id (15 orders)
 menu: product_id, product_name (sushi, curry, ramen), price
 
 members: customer_id, join_date (loyalty program)
+
+E-R Diagram:-
+
+<img width="785" height="347" alt="image" src="https://github.com/user-attachments/assets/e6b35413-2845-4e48-b9ae-d7bdeb1d7677" />
 
