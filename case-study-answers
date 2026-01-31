@@ -57,7 +57,57 @@ Q5) Which item was the most popular for each customer?
 
   
 Q6) Which item was purchased first by the customer after they became a member?
+
+    SELECT s.customer_id, MIN(s.order_date) AS first_after_join, m.product_name
+    FROM sales s
+    JOIN menu m ON s.product_id = m.product_id
+    JOIN members mem ON s.customer_id = mem.customer_id
+    WHERE s.order_date >= mem.join_date
+    GROUP BY s.customer_id, m.product_name;
+
+
 Q7) Which item was purchased just before the customer became a member?
+
+    SELECT s.customer_id, MAX(s.order_date) AS last_before_join, m.product_name
+    FROM sales s
+    JOIN menu m ON s.product_id = m.product_id
+    JOIN members mem ON s.customer_id = mem.customer_id
+    WHERE s.order_date < mem.join_date
+    GROUP BY s.customer_id, m.product_name;
+
+
+
 Q8) What is the total items and amount spent for each member before they became a member?
+
+    SELECT s.customer_id, COUNT(*) AS total_items, SUM(m.price) AS total_spent
+    FROM sales s
+    JOIN menu m ON s.product_id = m.product_id
+    JOIN members mem ON s.customer_id = mem.customer_id
+    WHERE s.order_date < mem.join_date
+    GROUP BY s.customer_id;
+
+
 Q9) If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
+    SELECT s.customer_id,
+       SUM(
+           CASE 
+               WHEN m.product_name = 'sushi' THEN m.price * 20
+               ELSE m.price * 10
+           END
+           ) AS total_points
+    FROM sales s
+    JOIN menu m ON s.product_id = m.product_id
+    GROUP BY s.customer_id;
+
+
 Q10) In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+    SELECT s.customer_id,
+       SUM(m.price * 10 * 2) AS week_points
+    FROM sales s
+    JOIN menu m ON s.product_id = m.product_id
+    JOIN members mem ON s.customer_id = mem.customer_id
+    WHERE s.order_date BETWEEN mem.join_date AND DATE_ADD(mem.join_date, INTERVAL 6 DAY)
+    GROUP BY s.customer_id;
+
